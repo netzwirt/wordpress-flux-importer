@@ -1,0 +1,41 @@
+<rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+    <channel>
+        <wp:wxr_version>1.2</wp:wxr_version>
+        <wp:base_site_url>http://sks.lo</wp:base_site_url>
+        <wp:base_blog_url>http://sks.lo</wp:base_blog_url>
+        <generator>http://wordpress.org/?v=3.5.2-alpha</generator>
+        <item>
+            <title>Page A</title>
+            <pubDate>Fri, 24 Jun 2011 01:38:52 +0000</pubDate>
+            <description></description>
+            <dc:creator>sksadmin</dc:creator>
+            <content:encoded><![CDATA[(lorem ipsum)]]></content:encoded>
+            <wp:post_date>2011-06-23 18:38:52</wp:post_date>
+            <wp:post_date_gmt>2011-06-24 01:38:52</wp:post_date_gmt>
+            <wp:comment_status>open</wp:comment_status>
+            <wp:ping_status>closed</wp:ping_status>
+            <wp:status>publish</wp:status>
+            <wp:post_type>page</wp:post_type>
+        </item>
+        <item>
+            <title>Post Format Test: Audio</title>
+            <pubDate>Mon, 02 Jun 2008 15:36:44 +0000</pubDate>
+            <description></description>
+            <dc:creator>sksadmin</dc:creator>
+            <content:encoded><![CDATA[hallo welt]]></content:encoded>
+            <excerpt:encoded><![CDATA[]]>
+            </excerpt:encoded>
+            <wp:post_date>2008-06-02 08:36:44</wp:post_date>
+            <wp:post_date_gmt>2008-06-02 15:36:44</wp:post_date_gmt>
+            <wp:comment_status>closed</wp:comment_status>
+            <wp:ping_status>closed</wp:ping_status>
+            <wp:status>publish</wp:status>
+            <wp:post_type>post</wp:post_type>
+            <category domain="post_tag" nicename="chattels"><![CDATA[chattels]]></category>
+            <category domain="post_tag" nicename="bart"><![CDATA[Bartman]]></category>
+            <category domain="category" nicename="testwettbewerb"><![CDATA[Test Wettbewerb]]></category>
+        </item>
+    </channel>
+</rss>
