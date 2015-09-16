@@ -610,6 +610,8 @@ if (!class_exists( 'WP_Import' ) ) {
             <generator>flux2wp</generator>
             '."\n\n\n";
 
+            $titles = array();
+            
             while($row = mysql_fetch_assoc($this->flux_posts_result)) {
 
 
@@ -627,8 +629,27 @@ if (!class_exists( 'WP_Import' ) ) {
 
                 foreach($row as $fieldname => $value) {
 
+                	// check for duplicate titles
+                	if ($fieldname == 'title') {
+						$check = md5($value);
+						if ( isset( $titles[$check] ) ) {
+							for($i = 2 ; $i < 100; $i++) {
+								// append number to title
+								$check = md5("$value - $i");
+								// until it does not exist
+								if ( ! isset( $titles[$check] ) ) {
+									$value = "$value - $i";
+									break;
+								}
+							}
+						}
+						// store md5 from title
+						$titles[$check] = '';
+                	}
+                	
                     $fragment = $this->getFormattetXML($fieldname, $value, $row);
 
+                    
                     if($fragment === null) {
                         echo "<p><strong>Failed to get XML-fragment: $fieldname</strong></p>";
                         return false;
@@ -781,7 +802,7 @@ if (!class_exists( 'WP_Import' ) ) {
         private function get_comments($posts_id) {
 
             /*
-             id 	1
+            id 	1
             127
             Georg Raffael
             g.raffael@bluemail.ch
@@ -1001,7 +1022,7 @@ if (!class_exists( 'WP_Import' ) ) {
         }
 
         /*
-         ----- only thing found in flux is 'TRACKBACK'
+        ----- only thing found in flux is 'TRACKBACK'
         ----- wordpress knows 'comment', 'trackback', 'pingback'
         */
         private function _transliterate__wp_comment_type ($value, $data) {
