@@ -983,6 +983,7 @@ if (!class_exists( 'WP_Import' ) ) {
                     $tags = explode(' ',$row['Tags']);
 
                     foreach($tags as $tag) {
+                    	$tag = str_replace('"', '', $tag);
                         $nice = trim(strtolower($tag));
                         if($nice != '') {
                             $XML .= '<category domain="post_tag" nicename="'.$nice.'"><![CDATA['.$tag.']]></category>'."\n";
