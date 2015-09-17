@@ -11,7 +11,9 @@ if ( ! is_admin() ) {
 
 @session_start();
 
-
+if( !defined('IMPORT_DEBUG')) {
+	define('IMPORT_DEBUG', true);
+}
 
 // start output chache if file download is requested
 if(isset($_POST['sendfile']) && $_POST['sendfile'] == '1' ) {
