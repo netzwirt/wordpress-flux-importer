@@ -203,45 +203,45 @@ if (!class_exists( 'WP_Import' ) ) {
             $j = 0;
             ?>
 <form
-	action="<?php echo admin_url( 'admin.php?import=fluxcmsblog&amp;step=2' ); ?>"
-	method="post">
-	<?php wp_nonce_field( 'import-wordpress' ); ?>
-	<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
+    action="<?php echo admin_url( 'admin.php?import=fluxcmsblog&amp;step=2' ); ?>"
+    method="post">
+    <?php wp_nonce_field( 'import-wordpress' ); ?>
+    <input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
 
-	<?php if ( ! empty( $this->authors ) ) : ?>
-	<h3>
-		<?php _e( 'Assign Authors', 'wordpress-importer' ); ?>
-	</h3>
-	<p>
-		<?php _e( 'To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries.', 'wordpress-importer' ); ?>
-	</p>
-	<?php if ( $this->allow_create_users() ) : ?>
-	<p>
-		<?php printf( __( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.', 'wordpress-importer' ), esc_html( get_option('default_role') ) ); ?>
-	</p>
-	<?php endif; ?>
-	<ol id="authors">
-		<?php foreach ( $this->authors as $author ) : ?>
-		<li><?php $this->author_select( $j++, $author ); ?></li>
-		<?php endforeach; ?>
-	</ol>
-	<?php endif; ?>
+    <?php if ( ! empty( $this->authors ) ) : ?>
+    <h3>
+        <?php _e( 'Assign Authors', 'wordpress-importer' ); ?>
+    </h3>
+    <p>
+        <?php _e( 'To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries.', 'wordpress-importer' ); ?>
+    </p>
+    <?php if ( $this->allow_create_users() ) : ?>
+    <p>
+        <?php printf( __( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.', 'wordpress-importer' ), esc_html( get_option('default_role') ) ); ?>
+    </p>
+    <?php endif; ?>
+    <ol id="authors">
+        <?php foreach ( $this->authors as $author ) : ?>
+        <li><?php $this->author_select( $j++, $author ); ?></li>
+        <?php endforeach; ?>
+    </ol>
+    <?php endif; ?>
 
-	<?php if ( $this->allow_fetch_attachments() ) : ?>
-	<h3>
-		<?php _e( 'Import Attachments', 'wordpress-importer' ); ?>
-	</h3>
-	<p>
-		<input type="checkbox" value="1" name="fetch_attachments"
-			id="import-attachments" /> <label for="import-attachments"><?php _e( 'Download and import file attachments', 'wordpress-importer' ); ?>
-		</label>
-	</p>
-	<?php endif; ?>
+    <?php if ( $this->allow_fetch_attachments() ) : ?>
+    <h3>
+        <?php _e( 'Import Attachments', 'wordpress-importer' ); ?>
+    </h3>
+    <p>
+        <input type="checkbox" value="1" name="fetch_attachments"
+            id="import-attachments" /> <label for="import-attachments"><?php _e( 'Download and import file attachments', 'wordpress-importer' ); ?>
+        </label>
+    </p>
+    <?php endif; ?>
 
-	<p class="submit">
-		<input type="submit" class="button"
-			value="<?php esc_attr_e( 'Submit', 'wordpress-importer' ); ?>" />
-	</p>
+    <p class="submit">
+        <input type="submit" class="button"
+            value="<?php esc_attr_e( 'Submit', 'wordpress-importer' ); ?>" />
+    </p>
 </form>
 <?php
         }
@@ -629,24 +629,24 @@ if (!class_exists( 'WP_Import' ) ) {
 
                 foreach($row as $fieldname => $value) {
 
-                	// check for duplicate titles
-                	if ($fieldname == 'title') {
-						$check = md5($value);
-						if ( isset( $titles[$check] ) ) {
-							for($i = 2 ; $i < 100; $i++) {
-								// append number to title
-								$check = md5("$value - $i");
-								// until it does not exist
-								if ( ! isset( $titles[$check] ) ) {
-									$value = "$value - $i";
-									break;
-								}
-							}
-						}
-						// store md5 from title
-						$titles[$check] = '';
-                	}
-                	
+                    // check for duplicate titles
+                    if ($fieldname == 'title') {
+                        $check = md5($value);
+                        if ( isset( $titles[$check] ) ) {
+                            for($i = 2 ; $i < 100; $i++) {
+                                // append number to title
+                                $check = md5("$value - $i");
+                                // until it does not exist
+                                if ( ! isset( $titles[$check] ) ) {
+                                    $value = "$value - $i";
+                                    break;
+                                }
+                            }
+                        }
+                        // store md5 from title
+                        $titles[$check] = '';
+                    }
+                    
                     $fragment = $this->getFormattetXML($fieldname, $value, $row);
 
                     
@@ -802,23 +802,23 @@ if (!class_exists( 'WP_Import' ) ) {
         private function get_comments($posts_id) {
 
             /*
-            id 	1
+            id     1
             127
             Georg Raffael
             g.raffael@bluemail.ch
              
             85.5.214.48
-            comment_date 	2007-09-17 10:45:28
+            comment_date     2007-09-17 10:45:28
             Die Zust&#228;nde in den Weltmeeren sind dermassen...
-            changed 	2007-09-17 12:45:28
+            changed     2007-09-17 12:45:28
              
-            comment_status 	1
-            comment_rejectreason 	NULL
-            comment_hash 	r341b1a1197791c229a194f177cc8ef05
-            comment_notification 	0
-            comment_notification_hash 	f029fd7be059a7e2ee9246fda939eec4
-            openid 	0
-            comment_username 	blogcomments`
+            comment_status     1
+            comment_rejectreason     NULL
+            comment_hash     r341b1a1197791c229a194f177cc8ef05
+            comment_notification     0
+            comment_notification_hash     f029fd7be059a7e2ee9246fda939eec4
+            openid     0
+            comment_username     blogcomments`
 
             // comment status -----------------------------------
             <option value="0">none</option>
@@ -1249,148 +1249,148 @@ function WP_FluxCmsBlog_Importer_connection_form( $action ) {
 
     ?>
 <form id="import-connection-form" method="post"  enctype="multipart/form-data" class="wp-form"
-	action="<?php echo esc_attr(wp_nonce_url($action, 'database-connection')); ?>">
+    action="<?php echo esc_attr(wp_nonce_url($action, 'database-connection')); ?>">
 
-	<table>
+    <table>
 
-		<tr>
-			<td><label for="hostname">Host</label>
-			</td>
-			<td><input type="text" id="hostname" name="hostname" size="25"
-				value="<?php 
-			if(isset($_POST['hostname'])) { echo $_POST['hostname']; } else { echo 'localhost'; } 
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="hostname">Host</label>
+            </td>
+            <td><input type="text" id="hostname" name="hostname" size="25"
+                value="<?php 
+            if(isset($_POST['hostname'])) { echo $_POST['hostname']; } else { echo 'localhost'; } 
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="db_username">User</label>
-			</td>
-			<td><input type="text" id="db_username" name="db_username" size="25"
-				value="<?php 
-			if(isset($_POST['db_username'])) { echo $_POST['db_username']; } else { echo 'root'; } 
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="db_username">User</label>
+            </td>
+            <td><input type="text" id="db_username" name="db_username" size="25"
+                value="<?php 
+            if(isset($_POST['db_username'])) { echo $_POST['db_username']; } else { echo 'root'; } 
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="db_password">Password</label>
-			</td>
-			<td><input type="password" id="db_password" name="db_password"
-				value="<?php 
-			if(isset($_POST['db_password'])) { echo $_POST['db_password']; } else { echo ''; } 
-			?>"
-				size="25" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="db_password">Password</label>
+            </td>
+            <td><input type="password" id="db_password" name="db_password"
+                value="<?php 
+            if(isset($_POST['db_password'])) { echo $_POST['db_password']; } else { echo ''; } 
+            ?>"
+                size="25" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="database">Database</label>
-			</td>
-			<td><input type="text" id="database_name" name="database_name"
-				value="<?php 
-			if(isset($_POST['database_name'])) { echo $_POST['database_name']; } else { echo ''; } 
-			?>"
-				size="25" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="database">Database</label>
+            </td>
+            <td><input type="text" id="database_name" name="database_name"
+                value="<?php 
+            if(isset($_POST['database_name'])) { echo $_POST['database_name']; } else { echo ''; } 
+            ?>"
+                size="25" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="prefix">Table prefix</label>
-			</td>
-			<td><input type="text" id="prefix" name="prefix" size="25"
-				value="<?php 
-			if(isset($_POST['prefix'])) { echo $_POST['prefix']; } else { echo 'fluxcms_'; } 
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="prefix">Table prefix</label>
+            </td>
+            <td><input type="text" id="prefix" name="prefix" size="25"
+                value="<?php 
+            if(isset($_POST['prefix'])) { echo $_POST['prefix']; } else { echo 'fluxcms_'; } 
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="blogid">Blog ID</label>
-			</td>
-			<td><input type="text" id="blogid" name="blogid" size="3"
-				value="<?php 
-			if(isset($_POST['blogid'])) { echo $_POST['blogid']; } else { echo '1'; } 
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="blogid">Blog ID</label>
+            </td>
+            <td><input type="text" id="blogid" name="blogid" size="3"
+                value="<?php 
+            if(isset($_POST['blogid'])) { echo $_POST['blogid']; } else { echo '1'; } 
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td colspan="2">
-				<h3>Options</h3>
-			</td>
-		</tr>
+        <tr>
+            <td colspan="2">
+                <h3>Options</h3>
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="add_category">Add categories to all posts</label>
-			</td>
-			<td><input type="text" id="add_category" name="add_category"
-				size="25"
-				value="<?php 
-			if(isset($_POST['add_category'])) { echo $_POST['add_category']; } else { echo ''; } 
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="add_category">Add categories to all posts</label>
+            </td>
+            <td><input type="text" id="add_category" name="add_category"
+                size="25"
+                value="<?php 
+            if(isset($_POST['add_category'])) { echo $_POST['add_category']; } else { echo ''; } 
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="incl_comments">Import Comments</label>
-			</td>
-			<td><input type="checkbox" id="incl_comments" name="incl_comments"
-				value="1" <?php 
-				if(isset($_POST['incl_comments']) && $_POST['incl_comments'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
-				?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="incl_comments">Import Comments</label>
+            </td>
+            <td><input type="checkbox" id="incl_comments" name="incl_comments"
+                value="1" <?php 
+                if(isset($_POST['incl_comments']) && $_POST['incl_comments'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
+                ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="clean_db">Delete previous import</label>
-			</td>
-			<td><input type="checkbox" id="clean_db" name="clean_db" value="1" <?php 
-			if(isset($_POST['clean_db']) && $_POST['clean_db'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="clean_db">Delete previous import</label>
+            </td>
+            <td><input type="checkbox" id="clean_db" name="clean_db" value="1" <?php 
+            if(isset($_POST['clean_db']) && $_POST['clean_db'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td><label for="sendfile">Send File</label>
-			</td>
-			<td><input type="checkbox" id="sendfile" name="sendfile" value="1" <?php 
-			if(isset($_POST['sendfile']) && $_POST['sendfile'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
-			?>" />
-			</td>
-		</tr>
+        <tr>
+            <td><label for="sendfile">Send File</label>
+            </td>
+            <td><input type="checkbox" id="sendfile" name="sendfile" value="1" <?php 
+            if(isset($_POST['sendfile']) && $_POST['sendfile'] == '1' ) { echo ' checked="checked" '; } else { echo ''; }
+            ?>" />
+            </td>
+        </tr>
 
-		<tr>
-			<td>
-			</td>
-			<td><?php submit_button('Start import'); ?>
-			</td>
-		</tr>
-		
-		
-		<tr>
-			<td colspan="2">
-			    <b>Save/restore settings</b>
-			</td>
-		</tr>
-		
-		
-		<tr>
-			<td colspan="2">
-			    <input type="file" id="load_settings" name="load_settings" />
-			</td>
-		</tr>
-		
-		<tr>
-			<td>
-			<?php submit_button('Save settings', 'additional', 'save_settings'); ?>
-			</td>
-			<td>
-			<?php submit_button('Load settings', 'additional', 'load_settings'); ?>
-			</td>
-		</tr>
+        <tr>
+            <td>
+            </td>
+            <td><?php submit_button('Start import'); ?>
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="2">
+                <b>Save/restore settings</b>
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="2">
+                <input type="file" id="load_settings" name="load_settings" />
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+            <?php submit_button('Save settings', 'additional', 'save_settings'); ?>
+            </td>
+            <td>
+            <?php submit_button('Load settings', 'additional', 'load_settings'); ?>
+            </td>
+        </tr>
 
-	</table>
+    </table>
 
 </form>
 <?php
