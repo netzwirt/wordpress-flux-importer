@@ -631,6 +631,11 @@ if (!class_exists( 'WP_Import' ) ) {
 
                 foreach($row as $fieldname => $value) {
 
+                	// replace numeric entities
+                	if( is_string( $value ) ) {
+                		$value = preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $value);
+                	}
+                	
                     // check for duplicate titles
                     if ($fieldname == 'title') {
                     	$from = $value;
@@ -650,6 +655,8 @@ if (!class_exists( 'WP_Import' ) ) {
                         // store md5 from title
                         $titles[$check] = '';
                     }
+                    
+                    
                     
                     $fragment = $this->getFormattetXML($fieldname, $value, $row);
 
@@ -879,6 +886,11 @@ if (!class_exists( 'WP_Import' ) ) {
                 $XML .= "    <wp:comment>\n";
                 foreach($row as $fieldname => $value) {
 
+                	// replace numeric entities
+                	if( is_string( $value ) ) {
+                		$value = preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $value);
+                	}
+                	
                     $fragment = $this->getFormattetXML($fieldname, $value, $row);
 
                     if($fragment === null) {
