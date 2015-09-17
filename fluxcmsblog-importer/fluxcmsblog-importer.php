@@ -633,6 +633,7 @@ if (!class_exists( 'WP_Import' ) ) {
 
                     // check for duplicate titles
                     if ($fieldname == 'title') {
+                    	$from = $value;
                         $check = md5($value);
                         if ( isset( $titles[$check] ) ) {
                             for($i = 2 ; $i < 100; $i++) {
@@ -644,6 +645,7 @@ if (!class_exists( 'WP_Import' ) ) {
                                     break;
                                 }
                             }
+                            echo " Changed title $from to: $value <br />";
                         }
                         // store md5 from title
                         $titles[$check] = '';
